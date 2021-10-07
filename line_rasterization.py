@@ -13,7 +13,6 @@ line = [POINT_1,POINT_2]
 data = np.zeros((MAX_SIZE_LENGTH,MAX_SIZE_WIDTH,1))
 
 data[0][0] = 255
-data[9][9] = 255
 
 
 plt.imshow(data,'gray',origin='lower',extent=(0, MAX_SIZE_WIDTH, 0, MAX_SIZE_LENGTH))
