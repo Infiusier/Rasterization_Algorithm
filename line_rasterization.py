@@ -40,7 +40,12 @@ class Matrix:
         self.deltaX = x2 - x1
         self.deltaY = y2 - y1
         
-        self.m = self.deltaY / self.deltaX
+        try:
+            self.m = self.deltaY / self.deltaX
+        except:
+            print("oi")
+            self.m=0
+            
         self.b = y1 - (self.m*x1)
 
         if abs(self.deltaX) > abs(self.deltaY):
@@ -51,8 +56,13 @@ class Matrix:
                 self.matrix[y][x] = 1
         else:
             for y in range(self.Ymin, self.Ymax ):
-                x = (y-self.b)/self.m
-                x = math.floor(x)
+                try:
+                    x = (y-self.b)/self.m
+                    x = math.floor(x)
+                except:
+                    print("oi")
+                    x =  self.Xmin
+                    
                 y = math.floor(y)
                 self.matrix[y][x] = 1
 
@@ -64,7 +74,7 @@ class Matrix:
         plt.show();
 
 if __name__ == '__main__':
-    line_1 = [[0.5,0],[9,3]]
+    line_1 = [[0,5],[9,5]]
 
     matrix_1 = Matrix(10,10)
     matrix_1.draw_line(line_1)
