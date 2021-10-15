@@ -13,11 +13,20 @@ class Matrix:
         self.length = length
         self.matrix = np.zeros((length , width, 1 ))
     
-    def draw_line(self,x1,y1,x2,y2):
-        self.x1=int(x1)
-        self.x2=int(x2)
-        self.y1=int(y1)
-        self.y2=int(y2)
+    def draw_line(self,line):
+        
+        point_1 = line[0]
+        point_2 = line[1]
+        
+        x1 = math.floor(point_1[0])
+        y1 = math.floor(point_1[1])
+        x2 = math.floor(point_2[0])
+        y2 = math.floor(point_2[1])
+        
+        self.x1=x1
+        self.y1=y1
+        self.x2=x2
+        self.y2=y2
         
         xs = [self.x1, self.x2]
         ys = [self.y1, self.y2]
@@ -39,24 +48,25 @@ class Matrix:
                 y = self.m*x + self.b
                 x = math.floor(x)
                 y = math.floor(y)
-                self.matrix[x][y] = 1
+                self.matrix[y][x] = 1
         else:
             for y in range(self.Ymin, self.Ymax ):
                 x = (y-self.b)/self.m
                 x = math.floor(x)
                 y = math.floor(y)
-                self.matrix[x][y] = 1
+                self.matrix[y][x] = 1
 
     def plot(self):
         
         plt.imshow(self.matrix,'gray',origin='lower',extent=(0, self.width, 0, self.length))
-        plt.plot([self.x1,self.y1],[self.x2,self.y2],linestyle='-');
+        plt.plot([self.x1,self.x2],[self.y1,self.y2],linestyle='-');
         
         plt.show();
 
 if __name__ == '__main__':
+    line_1 = [[0.5,0],[9,3]]
 
-    matrix_1 = Matrix(50,50)
-    matrix_1.draw_line(0,0,5,50)
+    matrix_1 = Matrix(10,10)
+    matrix_1.draw_line(line_1)
   
     matrix_1.plot()
