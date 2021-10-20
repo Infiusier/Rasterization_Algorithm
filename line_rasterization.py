@@ -29,41 +29,39 @@ class Matrix:
         self.x2=x2
         self.y2=y2
         
-        xs = [self.x1, self.x2]
-        ys = [self.y1, self.y2]
+        list_of_x = [self.x1, self.x2]
+        list_of_y = [self.y1, self.y2]
     
-        xs.sort()
-        ys.sort()
+        list_of_x.sort()
+        list_of_y.sort()
     
-        self.Xmin, self.Xmax = xs
-        self.Ymin, self.Ymax = ys
+        self.x_min, self.x_max = list_of_x
+        self.y_min, self.y_max = list_of_y
         
-        self.deltaX = x2 - x1
-        self.deltaY = y2 - y1
+        self.delta_x = x2 - x1
+        self.delta_y = y2 - y1
         
         try:
-            self.m = self.deltaY / self.deltaX
+            self.m = self.delta_y / self.delta_x
         except:
-            #print("oi")
             self.m=0
             
         self.b = y1 - (self.m*x1)
 
-        if abs(self.deltaX) > abs(self.deltaY):
-            for x in range(int(self.Xmin), int(self.Xmax) +0):
+        if abs(self.delta_x) > abs(self.delta_y):
+            for x in range(int(self.x_min), int(self.x_max) +0):
                 y = self.m*x + self.b
                 x = math.floor(x)
                 y = math.floor(y)
                 
                 self.matrix[y][x] = 1
         else:
-            for y in range(int(self.Ymin), int(self.Ymax) +0):
+            for y in range(int(self.y_min), int(self.y_max) +0):
                 try:
                     x = (y-self.b)/self.m
                     x = math.floor(x)
                 except:
-                    #print("oi")
-                    x =  self.Xmin
+                    x =  self.x_min
                     
                 y = math.floor(y)
                 self.matrix[y][x] = 1
